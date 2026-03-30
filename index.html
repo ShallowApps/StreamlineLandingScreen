@@ -802,6 +802,41 @@
       .btn-lime, .btn-ghost { justify-content: center; }
     }
 
+    /* ─── Language Switcher ────────────────────────────────────────── */
+    .lang-switcher { position: relative; margin-left: 0.5rem; }
+
+    .lang-btn {
+      display: flex; align-items: center; gap: 0.3rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm);
+      color: rgba(255,255,255,0.7);
+      font-family: var(--font-sans); font-size: 0.8rem; font-weight: 500;
+      padding: 0.28rem 0.6rem; cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+    .lang-dropdown {
+      position: absolute; top: calc(100% + 8px); right: 0;
+      background: #0D1120;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm);
+      min-width: 170px; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.55);
+      z-index: 200;
+    }
+    .lang-dropdown[hidden] { display: none; }
+    .lang-dropdown button {
+      display: block; width: 100%; background: none; border: none;
+      color: rgba(255,255,255,0.6); font-family: var(--font-sans);
+      font-size: 0.85rem; padding: 0.6rem 1rem;
+      text-align: left; cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-dropdown button:hover { background: rgba(255,255,255,0.06); color: #fff; }
+    .lang-dropdown button.lang-active { color: var(--lime); font-weight: 500; }
+
     /* ─── Utilities ────────────────────────────────────────────────── */
     .container {
       max-width: 1080px;
@@ -825,11 +860,23 @@
       Streamline
     </a>
     <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#terms">Terms</a></li>
-      <li><a href="#copyright">Copyright</a></li>
-      <li><a href="#" class="nav-cta" style="cursor:default;" onclick="return false;">Coming Soon</a></li>
+      <li><a href="#home" data-i18n="nav.home">Home</a></li>
+      <li><a href="#terms" data-i18n="nav.terms">Terms</a></li>
+      <li><a href="#copyright" data-i18n="nav.copyright">Copyright</a></li>
+      <li><a href="#" class="nav-cta" style="cursor:default;" onclick="return false;" data-i18n="nav.comingSoon">Coming Soon</a></li>
     </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn" id="lang-toggle" aria-label="Select language">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="lang-current">EN</span>
+        <svg width="9" height="9" viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M1.5 3l3 3 3-3"/></svg>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown" hidden>
+        <button data-lang="en">English</button>
+        <button data-lang="zh-Hans">中文（简体）</button>
+        <button data-lang="de">Deutsch</button>
+      </div>
+    </div>
   </nav>
 
 
@@ -843,26 +890,26 @@
 
     <div class="hero-inner">
       <img src="Assets/AppIcon.png" alt="Streamline icon" class="fade-up" style="width:128px;height:128px;border-radius:28px;display:block;margin:0 auto 1.5rem;box-shadow:0 8px 40px rgba(107,191,237,0.25);" />
-      <div class="hero-badge fade-up">
+      <div class="hero-badge fade-up" data-i18n-html="hero.badge">
         New &nbsp;·&nbsp; Smart refresh with conflict detection →
       </div>
-      <h1 class="hero-headline fade-up fade-up-delay-1">
+      <h1 class="hero-headline fade-up fade-up-delay-1" data-i18n-html="hero.headline">
         Your playlists,<br><em>perfectly organized.</em>
       </h1>
-      <p class="hero-sub fade-up fade-up-delay-2">
+      <p class="hero-sub fade-up fade-up-delay-2" data-i18n="hero.sub">
         Import, manage, and serve M3U playlists with a native Mac and iPhone app built for power users.
       </p>
       <div class="hero-buttons fade-up fade-up-delay-3">
         <a href="#" class="btn-lime" style="cursor:default;" onclick="return false;">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1.5C4.515 1.5 2.5 3.515 2.5 6c0 .965.29 1.86.787 2.6L2 12l3.52-1.27A4.48 4.48 0 0 0 7 11c2.485 0 4.5-2.015 4.5-4.5S9.485 1.5 7 1.5Z" fill="currentColor"/></svg>
-          Coming Soon
+          <span data-i18n="hero.button">Coming Soon</span>
         </a>
       </div>
     </div>
 
     <div class="hero-scroll-indicator">
       <div class="scroll-line"></div>
-      <span>scroll</span>
+      <span data-i18n="hero.scroll">scroll</span>
     </div>
   </section>
 
@@ -873,41 +920,41 @@
   <section id="features">
     <div class="container">
       <div class="section-header text-center fade-up">
-        <p class="section-label">Features</p>
-        <h2 class="section-title">Everything you need<br>to manage IPTV</h2>
-        <p class="section-sub">A complete toolkit for importing, organizing, serving, and exporting your M3U playlists — on Mac and iPhone.</p>
+        <p class="section-label" data-i18n="features.label">Features</p>
+        <h2 class="section-title" data-i18n-html="features.title">Everything you need<br>to manage IPTV</h2>
+        <p class="section-sub" data-i18n="features.sub">A complete toolkit for importing, organizing, serving, and exporting your M3U playlists — on Mac and iPhone.</p>
       </div>
 
       <div class="features-grid">
         <div class="feature-card fade-up fade-up-delay-1">
           <span class="feature-icon">📡</span>
-          <h3 class="feature-title">Local Server</h3>
-          <p class="feature-desc">Serve your playlists over the local network with full M3U and Xtream Codes API compatibility. Connect any media player instantly.</p>
+          <h3 class="feature-title" data-i18n="features.card1.title">Local Server</h3>
+          <p class="feature-desc" data-i18n="features.card1.desc">Serve your playlists over the local network with full M3U and Xtream Codes API compatibility. Connect any media player instantly.</p>
         </div>
         <div class="feature-card fade-up fade-up-delay-2">
           <span class="feature-icon">⚡</span>
-          <h3 class="feature-title">Dual Playback Engine</h3>
-          <p class="feature-desc">AVPlayer for hardware-accelerated decode. FFmpeg 8.0.1 for everything else. Automatic failover in 8 seconds — you never notice.</p>
+          <h3 class="feature-title" data-i18n="features.card2.title">Dual Playback Engine</h3>
+          <p class="feature-desc" data-i18n="features.card2.desc">AVPlayer for hardware-accelerated decode. FFmpeg 8.0.1 for everything else. Automatic failover in 8 seconds — you never notice.</p>
         </div>
         <div class="feature-card fade-up fade-up-delay-3">
           <span class="feature-icon">☁️</span>
-          <h3 class="feature-title">CloudKit Sync</h3>
-          <p class="feature-desc">Your entire library syncs privately across all your Apple devices via iCloud. No account needed — it just works.</p>
+          <h3 class="feature-title" data-i18n="features.card3.title">CloudKit Sync</h3>
+          <p class="feature-desc" data-i18n="features.card3.desc">Your entire library syncs privately across all your Apple devices via iCloud. No account needed — it just works.</p>
         </div>
         <div class="feature-card fade-up fade-up-delay-1">
           <span class="feature-icon">🔍</span>
-          <h3 class="feature-title">Full-Text Search</h3>
-          <p class="feature-desc">Instant FTS5-powered search across tens of thousands of streams. Find anything in milliseconds, no matter how large your library.</p>
+          <h3 class="feature-title" data-i18n="features.card4.title">Full-Text Search</h3>
+          <p class="feature-desc" data-i18n="features.card4.desc">Instant FTS5-powered search across tens of thousands of streams. Find anything in milliseconds, no matter how large your library.</p>
         </div>
         <div class="feature-card fade-up fade-up-delay-2">
           <span class="feature-icon">🔄</span>
-          <h3 class="feature-title">Smart Refresh</h3>
-          <p class="feature-desc">Detects conflicts between your edits and upstream server changes. Decide exactly what wins — your version, theirs, or both.</p>
+          <h3 class="feature-title" data-i18n="features.card5.title">Smart Refresh</h3>
+          <p class="feature-desc" data-i18n="features.card5.desc">Detects conflicts between your edits and upstream server changes. Decide exactly what wins — your version, theirs, or both.</p>
         </div>
         <div class="feature-card fade-up fade-up-delay-3">
           <span class="feature-icon">📤</span>
-          <h3 class="feature-title">Flexible Export</h3>
-          <p class="feature-desc">Export to M3U, M3U8, JSON, or XSPF. Share with any player, on any platform. Full metadata preserved.</p>
+          <h3 class="feature-title" data-i18n="features.card6.title">Flexible Export</h3>
+          <p class="feature-desc" data-i18n="features.card6.desc">Export to M3U, M3U8, JSON, or XSPF. Share with any player, on any platform. Full metadata preserved.</p>
         </div>
       </div>
     </div>
@@ -920,22 +967,22 @@
   <section id="pro">
     <div class="pro-inner">
       <div class="pro-card fade-up">
-        <div class="pro-badge">✦ Pro</div>
-        <h2 class="pro-headline">Go Pro.</h2>
-        <p class="pro-sub">One-time purchase. No subscription. Unlock the full power of Streamline forever.</p>
+        <div class="pro-badge" data-i18n="pro.badge">✦ Pro</div>
+        <h2 class="pro-headline" data-i18n="pro.headline">Go Pro.</h2>
+        <p class="pro-sub" data-i18n="pro.sub">One-time purchase. No subscription. Unlock the full power of Streamline forever.</p>
 
         <ul class="pro-features">
-          <li>Unlimited playlists &amp; sources</li>
-          <li>Local server hosting (M3U + Xtream Codes)</li>
-          <li>All export formats — M3U, M3U8, JSON, XSPF</li>
-          <li>FFmpeg playback engine</li>
-          <li>CloudKit sync across all your Apple devices <span style="font-size:0.75em;opacity:0.5;font-weight:500;">(coming soon)</span></li>
+          <li data-i18n="pro.li1">Unlimited playlists &amp; sources</li>
+          <li data-i18n="pro.li2">Local server hosting (M3U + Xtream Codes)</li>
+          <li data-i18n="pro.li3">All export formats — M3U, M3U8, JSON, XSPF</li>
+          <li data-i18n="pro.li4">FFmpeg playback engine</li>
+          <li>CloudKit sync across all your Apple devices <span style="font-size:0.75em;opacity:0.5;font-weight:500;" data-i18n="pro.li5note">(coming soon)</span></li>
         </ul>
 
-        <a href="#" class="btn-lime" style="display:inline-flex;">
+        <a href="#" class="btn-lime" style="display:inline-flex;" data-i18n="pro.button">
           Get Streamline Pro →
         </a>
-        <p class="pro-price-note">One-time purchase · No subscription · Works on Mac &amp; iPhone</p>
+        <p class="pro-price-note" data-i18n="pro.priceNote">One-time purchase · No subscription · Works on Mac &amp; iPhone</p>
       </div>
     </div>
   </section>
@@ -948,62 +995,62 @@
   <section id="terms">
     <div class="terms-inner">
       <div class="terms-header fade-up">
-        <p class="section-label light">Legal</p>
-        <h2 class="section-title dark">Terms &amp; Conditions</h2>
-        <p class="section-sub dark">Last updated: March 2026. Please read these terms carefully before using Streamline.</p>
+        <p class="section-label light" data-i18n="terms.label">Legal</p>
+        <h2 class="section-title dark" data-i18n="terms.title">Terms &amp; Conditions</h2>
+        <p class="section-sub dark" data-i18n="terms.lastUpdated">Last updated: March 2026. Please read these terms carefully before using Streamline.</p>
       </div>
 
       <div class="terms-section fade-up">
-        <h3><span class="terms-num">1</span> Acceptance of Terms</h3>
-        <p>By downloading, installing, or using Streamline ("the App"), you agree to be bound by these Terms and Conditions. If you do not agree to these terms, do not use the App. We reserve the right to update these terms at any time; continued use of the App after changes constitutes your acceptance.</p>
-      </div>
-      <div class="terms-divider"></div>
-
-      <div class="terms-section fade-up">
-        <h3><span class="terms-num">2</span> License</h3>
-        <p>Streamline grants you a limited, non-exclusive, non-transferable, revocable license to install and use the App on Apple devices you own or control, solely for your personal, non-commercial purposes, in accordance with these Terms and Apple's App Store Terms of Service. You may not copy, modify, distribute, sell, sublicense, or reverse-engineer any part of the App.</p>
+        <h3><span class="terms-num">1</span> <span data-i18n="terms.s1.title">Acceptance of Terms</span></h3>
+        <p data-i18n="terms.s1.text">By downloading, installing, or using Streamline ("the App"), you agree to be bound by these Terms and Conditions. If you do not agree to these terms, do not use the App. We reserve the right to update these terms at any time; continued use of the App after changes constitutes your acceptance.</p>
       </div>
       <div class="terms-divider"></div>
 
       <div class="terms-section fade-up">
-        <h3><span class="terms-num">3</span> Pro Version &amp; Purchases</h3>
-        <p>Certain features require a one-time in-app purchase ("Streamline Pro"). All purchases are final. Refunds are available within 14 days of purchase by contacting Apple Support. After 14 days, purchases are non-refundable. Pro features are unlocked on all devices signed in to the same Apple ID. We do not guarantee the continued availability of specific Pro features and reserve the right to modify them.</p>
+        <h3><span class="terms-num">2</span> <span data-i18n="terms.s2.title">License</span></h3>
+        <p data-i18n="terms.s2.text">Streamline grants you a limited, non-exclusive, non-transferable, revocable license to install and use the App on Apple devices you own or control, solely for your personal, non-commercial purposes, in accordance with these Terms and Apple's App Store Terms of Service. You may not copy, modify, distribute, sell, sublicense, or reverse-engineer any part of the App.</p>
       </div>
       <div class="terms-divider"></div>
 
       <div class="terms-section fade-up">
-        <h3><span class="terms-num">4</span> Prohibited Uses</h3>
-        <p>You agree not to use the App to: (a) access, redistribute, or serve copyrighted content without proper authorization; (b) circumvent geographic restrictions or digital rights management; (c) violate any applicable local, national, or international laws or regulations; (d) infringe on the intellectual property rights of any third party; or (e) use the App for any commercial purpose without prior written consent. You are solely responsible for the playlists you import and the content you serve.</p>
+        <h3><span class="terms-num">3</span> <span data-i18n="terms.s3.title">Pro Version &amp; Purchases</span></h3>
+        <p data-i18n="terms.s3.text">Certain features require a one-time in-app purchase ("Streamline Pro"). All purchases are final. Refunds are available within 14 days of purchase by contacting Apple Support. After 14 days, purchases are non-refundable. Pro features are unlocked on all devices signed in to the same Apple ID. We do not guarantee the continued availability of specific Pro features and reserve the right to modify them.</p>
       </div>
       <div class="terms-divider"></div>
 
       <div class="terms-section fade-up">
-        <h3><span class="terms-num">5</span> User Content &amp; Privacy</h3>
-        <p>Streamline processes playlist data locally on your device and, if you opt in, via your private iCloud account using CloudKit. We do not collect, store, or transmit your playlist data to our servers. We do collect anonymized crash reports and basic analytics to improve the App. For full details, see our Privacy Policy.</p>
+        <h3><span class="terms-num">4</span> <span data-i18n="terms.s4.title">Prohibited Uses</span></h3>
+        <p data-i18n="terms.s4.text">You agree not to use the App to: (a) access, redistribute, or serve copyrighted content without proper authorization; (b) circumvent geographic restrictions or digital rights management; (c) violate any applicable local, national, or international laws or regulations; (d) infringe on the intellectual property rights of any third party; or (e) use the App for any commercial purpose without prior written consent. You are solely responsible for the playlists you import and the content you serve.</p>
       </div>
       <div class="terms-divider"></div>
 
       <div class="terms-section fade-up">
-        <h3><span class="terms-num">6</span> Disclaimer of Warranties</h3>
-        <p>The App is provided "as is" and "as available" without warranties of any kind, express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement. We do not warrant that the App will be uninterrupted, error-free, or free of viruses or other harmful components. Your use of the App is at your sole risk.</p>
+        <h3><span class="terms-num">5</span> <span data-i18n="terms.s5.title">User Content &amp; Privacy</span></h3>
+        <p data-i18n="terms.s5.text">Streamline processes playlist data locally on your device and, if you opt in, via your private iCloud account using CloudKit. We do not collect, store, or transmit your playlist data to our servers. We do collect anonymized crash reports and basic analytics to improve the App. For full details, see our Privacy Policy.</p>
       </div>
       <div class="terms-divider"></div>
 
       <div class="terms-section fade-up">
-        <h3><span class="terms-num">7</span> Limitation of Liability</h3>
-        <p>To the maximum extent permitted by applicable law, Streamline and its developers shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, or goodwill, arising from your use of or inability to use the App, even if we have been advised of the possibility of such damages. Our total liability to you shall not exceed the amount paid by you for the App in the twelve months preceding the claim.</p>
+        <h3><span class="terms-num">6</span> <span data-i18n="terms.s6.title">Disclaimer of Warranties</span></h3>
+        <p data-i18n="terms.s6.text">The App is provided "as is" and "as available" without warranties of any kind, express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement. We do not warrant that the App will be uninterrupted, error-free, or free of viruses or other harmful components. Your use of the App is at your sole risk.</p>
       </div>
       <div class="terms-divider"></div>
 
       <div class="terms-section fade-up">
-        <h3><span class="terms-num">8</span> Governing Law</h3>
-        <p>These Terms shall be governed by and construed in accordance with applicable laws, without regard to conflicts of law principles. Any disputes arising from these Terms or your use of the App shall be subject to the exclusive jurisdiction of the competent courts.</p>
+        <h3><span class="terms-num">7</span> <span data-i18n="terms.s7.title">Limitation of Liability</span></h3>
+        <p data-i18n="terms.s7.text">To the maximum extent permitted by applicable law, Streamline and its developers shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, or goodwill, arising from your use of or inability to use the App, even if we have been advised of the possibility of such damages. Our total liability to you shall not exceed the amount paid by you for the App in the twelve months preceding the claim.</p>
       </div>
       <div class="terms-divider"></div>
 
       <div class="terms-section fade-up">
-        <h3><span class="terms-num">9</span> Contact</h3>
-        <p>If you have any questions about these Terms, please contact us at <a href="mailto:contact@shallowtv.com" style="color:rgba(107,191,237,0.9);text-decoration:none;">contact@shallowtv.com</a>.</p>
+        <h3><span class="terms-num">8</span> <span data-i18n="terms.s8.title">Governing Law</span></h3>
+        <p data-i18n="terms.s8.text">These Terms shall be governed by and construed in accordance with applicable laws, without regard to conflicts of law principles. Any disputes arising from these Terms or your use of the App shall be subject to the exclusive jurisdiction of the competent courts.</p>
+      </div>
+      <div class="terms-divider"></div>
+
+      <div class="terms-section fade-up">
+        <h3><span class="terms-num">9</span> <span data-i18n="terms.s9.title">Contact</span></h3>
+        <p data-i18n-html="terms.s9.text">If you have any questions about these Terms, please contact us at <a href="mailto:contact@shallowtv.com" style="color:rgba(107,191,237,0.9);text-decoration:none;">contact@shallowtv.com</a>.</p>
       </div>
     </div>
   </section>
@@ -1014,7 +1061,7 @@
   ══════════════════════════════════════════════════════════════════ -->
   <section id="copyright">
     <div style="text-align:center; padding: 4rem 2rem;">
-      <p style="font-size:1rem; color:rgba(255,255,255,0.5);">© 2026 Streamline by <strong style="color:#6BBFED;">Shallow TV</strong>. All rights reserved.</p>
+      <p style="font-size:1rem; color:rgba(255,255,255,0.5);" data-i18n-html="copyright.text">© 2026 Streamline by <strong style="color:#6BBFED;">Shallow TV</strong>. All rights reserved.</p>
     </div>
   </section>
 
@@ -1028,14 +1075,84 @@
       Streamline
     </a>
     <ul class="footer-links">
-      <li><a href="#documentation">Docs</a></li>
-      <li><a href="#terms">Terms</a></li>
-      <li><a href="#copyright">Copyright</a></li>
-      <li><a href="mailto:contact@shallowtv.com">Contact</a></li>
+      <li><a href="#documentation" data-i18n="footer.docs">Docs</a></li>
+      <li><a href="#terms" data-i18n="footer.terms">Terms</a></li>
+      <li><a href="#copyright" data-i18n="footer.copyright">Copyright</a></li>
+      <li><a href="mailto:contact@shallowtv.com" data-i18n="footer.contact">Contact</a></li>
     </ul>
-    <span style="font-size:0.78rem; color:rgba(255,255,255,0.2);">© 2026 Streamline</span>
+    <span style="font-size:0.78rem; color:rgba(255,255,255,0.2);" data-i18n="footer.copy">© 2026 Streamline</span>
   </footer>
 
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       I18N ENGINE — strings loaded from Assets/i18n/{lang}.json
+  ══════════════════════════════════════════════════════════════════ -->
+  <script>
+    (function () {
+      var SUPPORTED   = ['en', 'zh-Hans', 'de'];
+      var LANG_LABELS = { en: 'EN', 'zh-Hans': '中文', de: 'DE' };
+
+      function applyTranslations(t, lang) {
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          if (t[key] !== undefined) el.textContent = t[key];
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-html');
+          if (t[key] !== undefined) el.innerHTML = t[key];
+        });
+        var label = document.getElementById('lang-current');
+        if (label) label.textContent = LANG_LABELS[lang] || lang.toUpperCase();
+        document.querySelectorAll('[data-lang]').forEach(function (btn) {
+          btn.classList.toggle('lang-active', btn.getAttribute('data-lang') === lang);
+        });
+        document.documentElement.lang = lang;
+      }
+
+      function detectLang() {
+        var saved = localStorage.getItem('streamline-lang');
+        if (saved && SUPPORTED.indexOf(saved) !== -1) return saved;
+        var nav = (navigator.language || 'en').toLowerCase();
+        if (nav.startsWith('zh')) return 'zh-Hans';
+        if (nav.startsWith('de')) return 'de';
+        return 'en';
+      }
+
+      function loadLang(lang) {
+        return fetch('Assets/i18n/' + lang + '.json')
+          .then(function (r) { return r.json(); })
+          .then(function (t) { applyTranslations(t, lang); })
+          .catch(function () { if (lang !== 'en') return loadLang('en'); });
+      }
+
+      // Wire up dropdown
+      var toggle   = document.getElementById('lang-toggle');
+      var dropdown = document.getElementById('lang-dropdown');
+      if (toggle && dropdown) {
+        toggle.addEventListener('click', function (e) {
+          e.stopPropagation();
+          dropdown.hidden = !dropdown.hidden;
+        });
+        document.addEventListener('click', function () { dropdown.hidden = true; });
+        document.querySelectorAll('[data-lang]').forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var lang = btn.getAttribute('data-lang');
+            localStorage.setItem('streamline-lang', lang);
+            loadLang(lang);
+            dropdown.hidden = true;
+          });
+        });
+      }
+
+      // Hide page until translations load to avoid English flash
+      document.documentElement.style.opacity = '0';
+      loadLang(detectLang()).then(function () {
+        document.documentElement.style.transition = 'opacity 0.12s';
+        document.documentElement.style.opacity    = '1';
+      });
+    })();
+  </script>
 
   <!-- ═══════════════════════════════════════════════════════════════
        SCRIPTS
