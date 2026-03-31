@@ -878,6 +878,15 @@
         <button data-lang="de">Deutsch</button>
         <button data-lang="fa">Persian</button>
         <button data-lang="ar">Arabic</button>
+        <button data-lang="ko">Korean</button>
+        <button data-lang="ja">Japanese</button>
+        <button data-lang="pl">Polish</button>
+        <button data-lang="es">Spanish</button>
+        <button data-lang="it">Italian</button>
+        <button data-lang="ru">Russian</button>
+        <button data-lang="fr">French</button>
+        <button data-lang="id">Indonesian</button>
+        <button data-lang="th">Thai</button>
       </div>
     </div>
   </nav>
@@ -1094,8 +1103,8 @@
   <script src="Assets/i18n/translations.js"></script>
   <script>
     (function () {
-      var SUPPORTED   = ['en', 'zh-Hans', 'de', 'fa', 'ar'];
-      var LANG_LABELS = { en: 'EN', 'zh-Hans': '中文', de: 'DE', 'fa': 'فا', 'ar': 'عربي'};
+      var SUPPORTED   = ['en', 'zh-Hans', 'de', 'fa', 'ar', 'ko', 'ja', 'pl', 'es', 'it', 'ru', 'fr', 'id', 'th'];
+      var LANG_LABELS = { en: 'EN', 'zh-Hans': '中文', de: 'DE', 'fa': 'Persian', 'ar': 'عربي', 'ko': '한국어', 'ja': '日本語', 'pl': 'PL', 'es': 'ES', 'it': 'IT', 'ru': 'RU', 'fr': 'FR', 'id': 'ID', 'th': 'ไทย'};
 
       function applyTranslations(lang) {
         var t = (window.I18N || {})[lang] || (window.I18N || {})['en'] || {};
