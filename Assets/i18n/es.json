@@ -14,7 +14,7 @@
   "features.card1.title": "Servidor local",
   "features.card1.desc": "Sirve tus listas en la red local con compatibilidad completa con M3U y la API de Xtream Codes. Conecta cualquier reproductor al instante.",
   "features.card2.title": "Motor de reproducción dual",
-  "features.card2.desc": "AVPlayer para decodificación acelerada por hardware. FFmpeg 8.0.1 para todo lo demás. Conmutación automática en 8 segundos — sin que lo notes.",
+  "features.card2.desc": "AVPlayer para decodificación acelerada por hardware. FFmpeg 8.1 para todo lo demás. Conmutación automática en 8 segundos — sin que lo notes.",
   "features.card3.title": "Sincronización con CloudKit",
   "features.card3.desc": "Tu biblioteca completa se sincroniza de forma privada en todos tus dispositivos Apple a través de iCloud. Sin cuenta necesaria — simplemente funciona.",
   "features.card4.title": "Búsqueda de texto completo",

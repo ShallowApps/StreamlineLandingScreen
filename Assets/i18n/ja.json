@@ -14,7 +14,7 @@
   "features.card1.title": "ローカルサーバー",
   "features.card1.desc": "完全な M3U および Xtream Codes API 互換性でローカルネットワーク上にプレイリストを配信。あらゆるメディアプレーヤーに即座に接続できます。",
   "features.card2.title": "デュアル再生エンジン",
-  "features.card2.desc": "ハードウェアアクセラレートデコード用の AVPlayer。その他すべてに FFmpeg 8.0.1。8秒で自動フェイルオーバー — 気づくことすらありません。",
+  "features.card2.desc": "ハードウェアアクセラレートデコード用の AVPlayer。その他すべてに FFmpeg 8.1。8秒で自動フェイルオーバー — 気づくことすらありません。",
   "features.card3.title": "CloudKit 同期",
   "features.card3.desc": "ライブラリ全体が iCloud 経由でAppleデバイス間にプライベートで同期。アカウント不要 — そのまま使えます。",
   "features.card4.title": "全文検索",

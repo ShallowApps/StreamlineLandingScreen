@@ -14,7 +14,7 @@
   "features.card1.title": "Lokaler Server",
   "features.card1.desc": "Stelle Wiedergabelisten über das lokale Netzwerk bereit – mit voller M3U- und Xtream-Codes-API-Kompatibilität. Verbinde jeden Mediaplayer sofort.",
   "features.card2.title": "Dual-Wiedergabe-Engine",
-  "features.card2.desc": "AVPlayer für hardwarebeschleunigtes Dekodieren. FFmpeg 8.0.1 für alles andere. Automatisches Failover in 8 Sekunden – du merkst es nicht.",
+  "features.card2.desc": "AVPlayer für hardwarebeschleunigtes Dekodieren. FFmpeg 8.1 für alles andere. Automatisches Failover in 8 Sekunden – du merkst es nicht.",
   "features.card3.title": "CloudKit-Synchronisierung",
   "features.card3.desc": "Deine gesamte Bibliothek synchronisiert sich privat über alle Apple-Geräte via iCloud. Kein Konto erforderlich – es funktioniert einfach.",
   "features.card4.title": "Volltextsuche",

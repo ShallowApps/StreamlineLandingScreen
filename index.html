@@ -3,11 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Streamline - IPTV & M3U Editor</title>
+  <title>Streamline — IPTV & M3U Playlist Editor for Mac and iPhone</title>
   <link rel="icon" type="image/png" href="Assets/AppIcon.png" />
-  <meta name="description" content="Import, manage, and serve M3U playlists with a native Mac and iPhone app built for power users." />
-  <meta property="og:title" content="Streamline — M3U Playlist Manager" />
-  <meta property="og:description" content="Import, manage, and serve M3U playlists with a native Mac and iPhone app built for power users." />
+  <meta name="description" content="Streamline is a native Mac and iPhone app for managing IPTV playlists. Import, edit, and serve M3U and M3U8 files with smart refresh, conflict resolution, bulk editing, and a built-in local server." />
+  <meta name="keywords" content="IPTV, M3U, M3U8, playlist editor, playlist manager, Xtream Codes, IPTV player, M3U editor, EPG, stream manager, macOS IPTV, iPhone IPTV, local IPTV server, M3U import, M3U export, XSPF, Streamline, Streamline Pro" />
+  <meta name="author" content="Shallow TV" />
+  <meta property="og:title" content="Streamline — IPTV & M3U Playlist Editor for Mac and iPhone" />
+  <meta property="og:description" content="Import, edit, and serve M3U playlists with a native Mac and iPhone app built for power users. Smart refresh, conflict resolution, bulk editing, and a built-in local IPTV server." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Streamline — IPTV & M3U Playlist Editor" />
+  <meta name="twitter:description" content="Native Mac and iPhone app for managing IPTV playlists. Import M3U files, edit streams, run a local server, and export to any format." />
   <meta name="theme-color" content="#080C14" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -860,6 +866,89 @@
     .fade-up-delay-4 { transition-delay: 0.32s; }
     .fade-up-delay-5 { transition-delay: 0.40s; }
 
+    /* ─── Screenshots ──────────────────────────────────────────────── */
+    #screenshots {
+      background: var(--bg-dark-2);
+      padding: 6rem 1.5rem;
+    }
+
+    .ss-tabs {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .ss-tab {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
+      color: rgba(255,255,255,0.4);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.55rem 1.05rem;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .ss-tab:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.75); }
+
+    .ss-tab.active {
+      background: rgba(107,191,237,0.1);
+      border-color: rgba(107,191,237,0.3);
+      color: var(--lime);
+    }
+
+    .ss-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      font-size: 0.68rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .ss-tab.active .ss-num { background: rgba(107,191,237,0.2); }
+
+    .ss-viewer { max-width: 960px; margin: 0 auto; }
+    .ss-panel { display: none; }
+    .ss-panel.active { display: block; }
+
+    .ss-img-wrap {
+      margin-bottom: 1.75rem;
+      line-height: 0;
+      background: transparent;
+    }
+
+    .ss-img-wrap img { width: 100%; display: block; }
+
+    .ss-caption {
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto;
+      padding-bottom: 0.5rem;
+    }
+
+    .ss-caption h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .ss-caption p { font-size: 0.9rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
     /* ─── Responsive ───────────────────────────────────────────────── */
     @media (max-width: 840px) {
       .features-grid { grid-template-columns: repeat(2, 1fr); }
@@ -933,6 +1022,8 @@
     </a>
     <ul class="nav-links">
       <li><a href="#home" data-i18n="nav.home">Home</a></li>
+      <li><a href="#screenshots" data-i18n="nav.screenshots">Screenshots</a></li>
+      <li><a href="#pro" data-i18n="nav.pricing">Pricing</a></li>
       <li><a href="#terms" data-i18n="nav.terms">Terms</a></li>
       <li><a href="#copyright" data-i18n="nav.copyright">Copyright</a></li>
       <li><a href="#" class="nav-cta" style="cursor:default;" onclick="return false;" data-i18n="nav.comingSoon">Coming Soon</a></li>
@@ -944,20 +1035,31 @@
         <svg width="9" height="9" viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M1.5 3l3 3 3-3"/></svg>
       </button>
       <div class="lang-dropdown" id="lang-dropdown" hidden>
-        <button data-lang="en">English</button>
-        <button data-lang="zh-Hans">中文（简体）</button>
-        <button data-lang="de">Deutsch</button>
-        <button data-lang="fa">Persian</button>
         <button data-lang="ar">Arabic</button>
-        <button data-lang="ko">Korean</button>
-        <button data-lang="ja">Japanese</button>
-        <button data-lang="pl">Polish</button>
-        <button data-lang="es">Spanish</button>
-        <button data-lang="it">Italian</button>
-        <button data-lang="ru">Russian</button>
+        <button data-lang="zh-HK">Chinese (Hong Kong)</button>
+        <button data-lang="zh-Hans">Chinese (Simplified)</button>
+        <button data-lang="zh-Hant">Chinese (Traditional)</button>
+        <button data-lang="nl">Dutch</button>
+        <button data-lang="en">en</button>
+        <button data-lang="fi">Finnish</button>
         <button data-lang="fr">French</button>
+        <button data-lang="de">German</button>
+        <button data-lang="el">Greek</button>
+        <button data-lang="he">Hebrew</button>
+        <button data-lang="hi">Hindi</button>
         <button data-lang="id">Indonesian</button>
+        <button data-lang="it">Italian</button>
+        <button data-lang="ja">Japanese</button>
+        <button data-lang="ko">Korean</button>
+        <button data-lang="fa">Persian</button>
+        <button data-lang="pl">Polish</button>
+        <button data-lang="pt-BR">Portuguese (Brazil)</button>
+        <button data-lang="ru">Russian</button>
+        <button data-lang="es">Spanish</button>
         <button data-lang="th">Thai</button>
+        <button data-lang="tr">Turkish</button>
+        <button data-lang="uk">Ukrainian</button>
+        <button data-lang="vi">Vietnamese</button>
       </div>
     </div>
   </nav>
@@ -998,6 +1100,74 @@
 
 
   <!-- ═══════════════════════════════════════════════════════════════
+       SCREENSHOTS
+  ══════════════════════════════════════════════════════════════════ -->
+  <section id="screenshots">
+    <div class="container">
+      <div class="section-header text-center fade-up">
+        <p class="section-label light" data-i18n="screenshots.label">In Action</p>
+        <h2 class="section-title dark" data-i18n-html="screenshots.title">See what Streamline<br><em>can do</em></h2>
+        <p class="section-sub dark" data-i18n="screenshots.sub">A native Mac and iPhone app built for power users who take their playlists seriously.</p>
+      </div>
+
+      <div class="ss-tabs fade-up">
+        <button class="ss-tab active" data-ss="0"><span class="ss-num">1</span><span data-i18n="screenshots.1.tab">Browse Streams</span></button>
+        <button class="ss-tab" data-ss="1"><span class="ss-num">2</span><span data-i18n="screenshots.2.tab">Browse by Group</span></button>
+        <button class="ss-tab" data-ss="2"><span class="ss-num">3</span><span data-i18n="screenshots.3.tab">Bulk Edit</span></button>
+        <button class="ss-tab" data-ss="3"><span class="ss-num">4</span><span data-i18n="screenshots.4.tab">Local Server</span></button>
+        <button class="ss-tab" data-ss="4"><span class="ss-num">5</span><span data-i18n="screenshots.5.tab">Export</span></button>
+        <button class="ss-tab" data-ss="5"><span class="ss-num">6</span><span data-i18n="screenshots.6.tab">Smart Refresh</span></button>
+      </div>
+
+      <div class="ss-viewer fade-up">
+        <div class="ss-panel active">
+          <div class="ss-img-wrap"><img src="Assets/Screenshots/1.png" alt="Browse streams" loading="lazy" /></div>
+          <div class="ss-caption">
+            <h3 data-i18n="screenshots.1.title">Browse &amp; Manage Streams</h3>
+            <p data-i18n="screenshots.1.desc">View all your streams in a rich, sortable table. Search by name, group, or TVG ID, and inspect full metadata — resolution, EPG ID, logo URL, and more — in the side panel.</p>
+          </div>
+        </div>
+        <div class="ss-panel">
+          <div class="ss-img-wrap"><img src="Assets/Screenshots/2.png" alt="Browse by group" loading="lazy" /></div>
+          <div class="ss-caption">
+            <h3 data-i18n="screenshots.2.title">Organized by Group</h3>
+            <p data-i18n="screenshots.2.desc">Browse streams by group with a collapsible sidebar. See stream counts per category — Lifestyle, Movies, Music, News, and more — and drill down to exactly what you want.</p>
+          </div>
+        </div>
+        <div class="ss-panel">
+          <div class="ss-img-wrap"><img src="Assets/Screenshots/3.png" alt="Bulk edit streams" loading="lazy" /></div>
+          <div class="ss-caption">
+            <h3 data-i18n="screenshots.3.title">Edit at Scale</h3>
+            <p data-i18n="screenshots.3.desc">Select multiple streams at once and act on them in bulk. Change type or group, move to another playlist, copy, export, or delete — all in a single action.</p>
+          </div>
+        </div>
+        <div class="ss-panel">
+          <div class="ss-img-wrap"><img src="Assets/Screenshots/4.png" alt="Built-in local server" loading="lazy" /></div>
+          <div class="ss-caption">
+            <h3 data-i18n="screenshots.4.title">Built-in Local Server</h3>
+            <p data-i18n="screenshots.4.desc">Run a built-in HTTP server in Simple HTTP or Xtream Codes mode. Auto port assignment, live logs, and full M3U and Xtream Codes API compatibility — connect any IPTV player on your network instantly.</p>
+          </div>
+        </div>
+        <div class="ss-panel">
+          <div class="ss-img-wrap"><img src="Assets/Screenshots/5.png" alt="Export your playlist" loading="lazy" /></div>
+          <div class="ss-caption">
+            <h3 data-i18n="screenshots.5.title">Export to Any Format</h3>
+            <p data-i18n="screenshots.5.desc">Save your playlist as M3U, M3U8, JSON, or XSPF. Choose which columns to include and skip duplicate streams automatically — ready to share with any player or platform.</p>
+          </div>
+        </div>
+        <div class="ss-panel">
+          <div class="ss-img-wrap"><img src="Assets/Screenshots/6.png" alt="Smart refresh conflict resolution" loading="lazy" /></div>
+          <div class="ss-caption">
+            <h3 data-i18n="screenshots.6.title">Smart Refresh &amp; Conflict Resolution</h3>
+            <p data-i18n="screenshots.6.desc">When refreshing a playlist, Streamline detects conflicts between your local edits and server changes. Review each one individually — merge, skip, replace, or restore — so you always stay in control.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
        FEATURES
   ══════════════════════════════════════════════════════════════════ -->
   <section id="features">
@@ -1017,7 +1187,7 @@
         <div class="feature-card fade-up fade-up-delay-2">
           <span class="feature-icon">⚡</span>
           <h3 class="feature-title" data-i18n="features.card2.title">Dual Playback Engine</h3>
-          <p class="feature-desc" data-i18n="features.card2.desc">AVPlayer for hardware-accelerated decode. FFmpeg 8.0.1 for everything else. Automatic failover in 8 seconds — you never notice.</p>
+          <p class="feature-desc" data-i18n="features.card2.desc">AVPlayer for hardware-accelerated decode. FFmpeg 8.1 for everything else. Automatic failover in 8 seconds — you never notice.</p>
         </div>
         <div class="feature-card fade-up fade-up-delay-3">
           <span class="feature-card-badge" data-i18n="features.card3.badge">Coming Soon</span>
@@ -1071,7 +1241,12 @@
             </tr>
             <tr>
               <td><div class="td-feature"><span class="td-feature-icon">✏️</span><span data-i18n="pro.table.row2">Create Blank Playlist</span></div></td>
-              <td class="col-free"><span class="td-xmark">✕</span></td>
+              <td class="col-free"><span class="td-free-label" data-i18n="pro.table.row2.free">1 playlist</span></td>
+              <td class="col-pro"><span class="td-check">✓</span></td>
+            </tr>
+            <tr>
+              <td><div class="td-feature"><span class="td-feature-icon">📺</span><span data-i18n="pro.table.row8">Xtream Code Import</span></div></td>
+              <td class="col-free"><span class="td-check">✓</span></td>
               <td class="col-pro"><span class="td-check">✓</span></td>
             </tr>
             <tr>
@@ -1120,7 +1295,7 @@
       <div class="terms-header fade-up">
         <p class="section-label light" data-i18n="terms.label">Legal</p>
         <h2 class="section-title dark" data-i18n="terms.title">Terms &amp; Conditions</h2>
-        <p class="section-sub dark" data-i18n="terms.lastUpdated">Last updated: March 2026. Please read these terms carefully before using Streamline.</p>
+        <p class="section-sub dark" data-i18n="terms.lastUpdated">Version 1.0.0 · March 31, 2026. Please read these terms carefully before using Streamline.</p>
       </div>
 
       <div class="terms-section fade-up">
@@ -1137,7 +1312,7 @@
 
       <div class="terms-section fade-up">
         <h3><span class="terms-num">3</span> <span data-i18n="terms.s3.title">Pro Version &amp; Purchases</span></h3>
-        <p data-i18n="terms.s3.text">Certain features require a one-time in-app purchase ("Streamline Pro"). All purchases are final. Refunds are available within 14 days of purchase by contacting Apple Support. After 14 days, purchases are non-refundable. Pro features are unlocked on all devices signed in to the same Apple ID. We do not guarantee the continued availability of specific Pro features and reserve the right to modify them.</p>
+        <p data-i18n="terms.s3.text">Certain features require a one-time in-app purchase ("Streamline Pro"). All purchases are processed exclusively by Apple through the App Store — we do not handle payments or have access to your billing information. Because all transactions are managed by Apple, all refund requests must be submitted directly to Apple at reportaproblem.apple.com. We are unable to issue refunds ourselves. Pro features are unlocked on all devices signed in to the same Apple ID. We do not guarantee the continued availability of specific Pro features and reserve the right to modify them.</p>
       </div>
       <div class="terms-divider"></div>
 
@@ -1149,7 +1324,7 @@
 
       <div class="terms-section fade-up">
         <h3><span class="terms-num">5</span> <span data-i18n="terms.s5.title">User Content &amp; Privacy</span></h3>
-        <p data-i18n="terms.s5.text">Streamline processes playlist data locally on your device and, if you opt in, via your private iCloud account using CloudKit. We do not collect, store, or transmit your playlist data to our servers. We do collect anonymized crash reports and basic analytics to improve the App. For full details, see our Privacy Policy.</p>
+        <p data-i18n="terms.s5.text">Streamline processes playlist data locally on your device and, if you opt in, via your private iCloud account using CloudKit. We do not collect, store, or transmit your playlist data to our servers. We use Firebase (Google) to collect anonymized crash reports and basic usage analytics solely to improve the App. Firebase may collect device identifiers and usage events in accordance with Google's privacy policy. These Terms constitute our complete privacy policy. For questions, contact us at the address in §9.</p>
       </div>
       <div class="terms-divider"></div>
 
@@ -1198,7 +1373,8 @@
       Streamline
     </a>
     <ul class="footer-links">
-      <li><a href="#documentation" data-i18n="footer.docs">Docs</a></li>
+      <li><a href="#screenshots" data-i18n="nav.screenshots">Screenshots</a></li>
+      <li><a href="#pro" data-i18n="nav.pricing">Pricing</a></li>
       <li><a href="#terms" data-i18n="footer.terms">Terms</a></li>
       <li><a href="#copyright" data-i18n="footer.copyright">Copyright</a></li>
       <li><a href="mailto:contact@shallowtv.com" data-i18n="footer.contact">Contact</a></li>
@@ -1214,8 +1390,8 @@
   <script src="Assets/i18n/translations.js"></script>
   <script>
     (function () {
-      var SUPPORTED   = ['en', 'zh-Hans', 'de', 'fa', 'ar', 'ko', 'ja', 'pl', 'es', 'it', 'ru', 'fr', 'id', 'th'];
-      var LANG_LABELS = { en: 'EN', 'zh-Hans': '中文', de: 'DE', 'fa': 'Persian', 'ar': 'عربي', 'ko': '한국어', 'ja': '日本語', 'pl': 'PL', 'es': 'ES', 'it': 'IT', 'ru': 'RU', 'fr': 'FR', 'id': 'ID', 'th': 'ไทย'};
+      var SUPPORTED   = ['en', 'zh-Hans', 'de', 'fa', 'ar', 'ko', 'ja', 'pl', 'es', 'it', 'ru', 'fr', 'id', 'th', 'zh-HK', 'pt-BR', 'vi', 'tr', 'he', 'zh-Hant', 'nl', 'uk', 'fi', 'hi', 'el'];
+      var LANG_LABELS = { en: 'EN', 'zh-Hans': '中文', de: 'DE', 'fa': 'Persian', 'ar': 'عربي', 'ko': '한국어', 'ja': '日本語', 'pl': 'PL', 'es': 'ES', 'it': 'IT', 'ru': 'RU', 'fr': 'FR', 'id': 'ID', 'th': 'ไทย', 'zh-HK': '繁體', 'pt-BR': 'PT', 'vi': 'VI', 'tr': 'TR', 'he': 'עב', 'zh-Hant': '繁體', 'nl': 'NL', 'uk': 'УК', 'fi': 'FI', 'hi': 'हि', 'el': 'ΕΛ'};
 
       function applyTranslations(lang) {
         var t = (window.I18N || {})[lang] || (window.I18N || {})['en'] || {};
@@ -1288,6 +1464,23 @@
   <!-- ═══════════════════════════════════════════════════════════════
        SCRIPTS
   ══════════════════════════════════════════════════════════════════ -->
+  <script>
+    // ── Screenshot Tab Switcher ─────────────────────────────────────
+    (function () {
+      const tabs   = document.querySelectorAll('.ss-tab');
+      const panels = document.querySelectorAll('.ss-panel');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          const idx = parseInt(tab.getAttribute('data-ss'), 10);
+          tabs.forEach(function (t) { t.classList.remove('active'); });
+          panels.forEach(function (p) { p.classList.remove('active'); });
+          tab.classList.add('active');
+          panels[idx].classList.add('active');
+        });
+      });
+    })();
+  </script>
+
   <script>
     // ── Particle Canvas ────────────────────────────────────────────
     (function () {

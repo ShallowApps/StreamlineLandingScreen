@@ -14,7 +14,7 @@
   "features.card1.title": "Server Lokal",
   "features.card1.desc": "Sajikan playlist Anda melalui jaringan lokal dengan kompatibilitas penuh M3U dan Xtream Codes API. Hubungkan pemutar media mana pun secara instan.",
   "features.card2.title": "Mesin Pemutaran Ganda",
-  "features.card2.desc": "AVPlayer untuk dekode berakselerasi hardware. FFmpeg 8.0.1 untuk selebihnya. Failover otomatis dalam 8 detik — Anda tidak akan merasakannya.",
+  "features.card2.desc": "AVPlayer untuk dekode berakselerasi hardware. FFmpeg 8.1 untuk selebihnya. Failover otomatis dalam 8 detik — Anda tidak akan merasakannya.",
   "features.card3.title": "Sinkronisasi CloudKit",
   "features.card3.desc": "Seluruh pustaka Anda tersinkronisasi secara privat ke semua perangkat Apple Anda melalui iCloud. Tanpa akun tambahan — langsung berfungsi.",
   "features.card4.title": "Pencarian Teks Penuh",
