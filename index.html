@@ -387,6 +387,23 @@
       border-radius: var(--radius-lg);
       padding: 2rem 1.75rem;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .feature-card-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-dark-2);
+      background: var(--bg-light);
+      border: 1px solid var(--border-light);
+      border-radius: 999px;
+      padding: 0.2rem 0.6rem;
+      opacity: 0.7;
     }
 
     .feature-card:hover {
@@ -421,7 +438,7 @@
     }
 
     .pro-inner {
-      max-width: 680px;
+      max-width: 740px;
       margin: 0 auto;
       text-align: center;
     }
@@ -480,36 +497,90 @@
       line-height: 1.65;
     }
 
-    .pro-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
+    /* Comparison table */
+    .pro-table {
+      width: 100%;
+      border-collapse: collapse;
       margin-bottom: 2.5rem;
-      text-align: start;
+      text-align: left;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(107,191,237,0.18);
     }
 
-    .pro-features li {
+    .pro-table thead tr {
+      background: rgba(107,191,237,0.07);
+    }
+
+    .pro-table thead th {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.4);
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid rgba(107,191,237,0.18);
+    }
+
+    .pro-table thead th.col-pro {
+      color: rgba(107,191,237,0.9);
+    }
+
+    .pro-table tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .pro-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .pro-table tbody tr:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .pro-table td {
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    .pro-table .td-feature {
       display: flex;
       align-items: center;
       gap: 0.65rem;
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.85);
     }
 
-    .pro-features li::before {
-      content: '';
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      background: rgba(107,191,237,0.12);
-      border: 1px solid rgba(107,191,237,0.3);
-      border-radius: 50%;
+    .pro-table .td-feature-icon {
+      width: 26px;
+      height: 26px;
+      background: rgba(107,191,237,0.10);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%236BBFED' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 10px;
+      font-size: 0.75rem;
+    }
+
+    .pro-table .col-free,
+    .pro-table .col-pro {
+      width: 80px;
+      text-align: center;
+    }
+
+    .pro-table .td-free-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .pro-table .td-xmark {
+      color: rgba(255,255,255,0.18);
+      font-size: 0.8rem;
+    }
+
+    .pro-table .td-check {
+      color: rgba(107,191,237,0.9);
+      font-size: 0.9rem;
     }
 
     .pro-price-note {
@@ -949,6 +1020,7 @@
           <p class="feature-desc" data-i18n="features.card2.desc">AVPlayer for hardware-accelerated decode. FFmpeg 8.0.1 for everything else. Automatic failover in 8 seconds — you never notice.</p>
         </div>
         <div class="feature-card fade-up fade-up-delay-3">
+          <span class="feature-card-badge" data-i18n="features.card3.badge">Coming Soon</span>
           <span class="feature-icon">☁️</span>
           <h3 class="feature-title" data-i18n="features.card3.title">CloudKit Sync</h3>
           <p class="feature-desc" data-i18n="features.card3.desc">Your entire library syncs privately across all your Apple devices via iCloud. No account needed — it just works.</p>
@@ -983,13 +1055,52 @@
         <h2 class="pro-headline" data-i18n="pro.headline">Go Pro.</h2>
         <p class="pro-sub" data-i18n="pro.sub">One-time purchase. No subscription. Unlock the full power of Streamline forever.</p>
 
-        <ul class="pro-features">
-          <li data-i18n="pro.li1">Unlimited playlists &amp; sources</li>
-          <li data-i18n="pro.li2">Local server hosting (M3U + Xtream Codes)</li>
-          <li data-i18n="pro.li3">All export formats — M3U, M3U8, JSON, XSPF</li>
-          <li data-i18n="pro.li4">FFmpeg playback engine</li>
-          <li>CloudKit sync across all your Apple devices <span style="font-size:0.75em;opacity:0.5;font-weight:500;" data-i18n="pro.li5note">(coming soon)</span></li>
-        </ul>
+        <table class="pro-table">
+          <thead>
+            <tr>
+              <th data-i18n="pro.table.colFeature">Feature</th>
+              <th class="col-free" data-i18n="pro.table.colFree">Free</th>
+              <th class="col-pro col-pro" data-i18n="pro.table.colPro">✦ Pro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="td-feature"><span class="td-feature-icon">📋</span><span data-i18n="pro.table.row1">Unlimited Playlists</span></div></td>
+              <td class="col-free"><span class="td-free-label" data-i18n="pro.table.row1.free">1 source</span></td>
+              <td class="col-pro"><span class="td-check">✓</span></td>
+            </tr>
+            <tr>
+              <td><div class="td-feature"><span class="td-feature-icon">✏️</span><span data-i18n="pro.table.row2">Create Blank Playlist</span></div></td>
+              <td class="col-free"><span class="td-xmark">✕</span></td>
+              <td class="col-pro"><span class="td-check">✓</span></td>
+            </tr>
+            <tr>
+              <td><div class="td-feature"><span class="td-feature-icon">📡</span><span data-i18n="pro.table.row3">Local IPTV Server</span></div></td>
+              <td class="col-free"><span class="td-xmark">✕</span></td>
+              <td class="col-pro"><span class="td-check">✓</span></td>
+            </tr>
+            <tr>
+              <td><div class="td-feature"><span class="td-feature-icon">📤</span><span data-i18n="pro.table.row4">All Export Formats</span></div></td>
+              <td class="col-free"><span class="td-free-label" data-i18n="pro.table.row4.free">M3U only</span></td>
+              <td class="col-pro"><span class="td-check">✓</span></td>
+            </tr>
+            <tr>
+              <td><div class="td-feature"><span class="td-feature-icon">🎬</span><span data-i18n="pro.table.row5">FFmpeg Playback Engine</span></div></td>
+              <td class="col-free"><span class="td-xmark">✕</span></td>
+              <td class="col-pro"><span class="td-check">✓</span></td>
+            </tr>
+            <tr>
+              <td><div class="td-feature"><span class="td-feature-icon">⛶</span><span data-i18n="pro.table.row6">Full Screen Player</span></div></td>
+              <td class="col-free"><span class="td-xmark">✕</span></td>
+              <td class="col-pro"><span class="td-check">✓</span></td>
+            </tr>
+            <tr>
+              <td><div class="td-feature"><span class="td-feature-icon">⚡</span><span data-i18n="pro.table.row7">Bulk Editing</span></div></td>
+              <td class="col-free"><span class="td-xmark">✕</span></td>
+              <td class="col-pro"><span class="td-check">✓</span></td>
+            </tr>
+          </tbody>
+        </table>
 
         <a href="#" class="btn-lime" style="display:inline-flex;" data-i18n="pro.button">
           Get Streamline Pro →
