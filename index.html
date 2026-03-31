@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Streamline — M3U Playlist Manager for Mac & iPhone</title>
+  <title>Streamline - IPTV & M3U Editor</title>
+  <link rel="icon" type="image/png" href="Assets/AppIcon.png" />
   <meta name="description" content="Import, manage, and serve M3U playlists with a native Mac and iPhone app built for power users." />
   <meta property="og:title" content="Streamline — M3U Playlist Manager" />
   <meta property="og:description" content="Import, manage, and serve M3U playlists with a native Mac and iPhone app built for power users." />
@@ -485,7 +486,7 @@
       flex-direction: column;
       gap: 0.65rem;
       margin-bottom: 2.5rem;
-      text-align: left;
+      text-align: start;
     }
 
     .pro-features li {
@@ -591,7 +592,7 @@
     }
 
     .docs-content ul, .docs-content ol {
-      padding-left: 1.4rem;
+      padding-inline-start: 1.4rem;
       margin-top: 0.75rem;
     }
 
@@ -803,7 +804,7 @@
     }
 
     /* ─── Language Switcher ────────────────────────────────────────── */
-    .lang-switcher { position: relative; margin-left: 0.5rem; }
+    .lang-switcher { position: relative; margin-inline-start: 0.5rem; }
 
     .lang-btn {
       display: flex; align-items: center; gap: 0.3rem;
@@ -818,7 +819,7 @@
     .lang-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
     .lang-dropdown {
-      position: absolute; top: calc(100% + 8px); right: 0;
+      position: absolute; top: calc(100% + 8px); inset-inline-end: 0;
       background: #0D1120;
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: var(--radius-sm);
@@ -831,7 +832,7 @@
       display: block; width: 100%; background: none; border: none;
       color: rgba(255,255,255,0.6); font-family: var(--font-sans);
       font-size: 0.85rem; padding: 0.6rem 1rem;
-      text-align: left; cursor: pointer;
+      text-align: start; cursor: pointer;
       transition: background 0.15s, color 0.15s;
     }
     .lang-dropdown button:hover { background: rgba(255,255,255,0.06); color: #fff; }
@@ -856,7 +857,7 @@
   ══════════════════════════════════════════════════════════════════ -->
   <nav id="main-nav">
     <a href="#home" class="nav-logo">
-      <img src="Assets/AppIcon.png" alt="Streamline" style="width:28px;height:28px;border-radius:7px;margin-right:8px;vertical-align:middle;" />
+      <img src="Assets/AppIcon.png" alt="Streamline" style="width:28px;height:28px;border-radius:7px;margin-inline-end:8px;vertical-align:middle;" />
       Streamline
     </a>
     <ul class="nav-links">
@@ -875,6 +876,8 @@
         <button data-lang="en">English</button>
         <button data-lang="zh-Hans">中文（简体）</button>
         <button data-lang="de">Deutsch</button>
+        <button data-lang="fa">Persian</button>
+        <button data-lang="ar">Arabic</button>
       </div>
     </div>
   </nav>
@@ -1085,14 +1088,17 @@
 
 
   <!-- ═══════════════════════════════════════════════════════════════
-       I18N ENGINE — strings loaded from Assets/i18n/{lang}.json
+       I18N — bundle loaded from Assets/i18n/translations.js
+       Regenerate bundle: python3 Scripts/xcstrings_tool.py --build-web
   ══════════════════════════════════════════════════════════════════ -->
+  <script src="Assets/i18n/translations.js"></script>
   <script>
     (function () {
-      var SUPPORTED   = ['en', 'zh-Hans', 'de'];
-      var LANG_LABELS = { en: 'EN', 'zh-Hans': '中文', de: 'DE' };
+      var SUPPORTED   = ['en', 'zh-Hans', 'de', 'fa', 'ar'];
+      var LANG_LABELS = { en: 'EN', 'zh-Hans': '中文', de: 'DE', 'fa': 'فا', 'ar': 'عربي'};
 
-      function applyTranslations(t, lang) {
+      function applyTranslations(lang) {
+        var t = (window.I18N || {})[lang] || (window.I18N || {})['en'] || {};
         document.querySelectorAll('[data-i18n]').forEach(function (el) {
           var key = el.getAttribute('data-i18n');
           if (t[key] !== undefined) el.textContent = t[key];
@@ -1107,22 +1113,32 @@
           btn.classList.toggle('lang-active', btn.getAttribute('data-lang') === lang);
         });
         document.documentElement.lang = lang;
+        document.documentElement.dir = ['ar', 'fa', 'he', 'ur'].indexOf(lang) !== -1 ? 'rtl' : 'ltr';
       }
 
       function detectLang() {
-        var saved = localStorage.getItem('streamline-lang');
-        if (saved && SUPPORTED.indexOf(saved) !== -1) return saved;
-        var nav = (navigator.language || 'en').toLowerCase();
-        if (nav.startsWith('zh')) return 'zh-Hans';
-        if (nav.startsWith('de')) return 'de';
-        return 'en';
-      }
+        var i18n = window.I18N || {};
 
-      function loadLang(lang) {
-        return fetch('Assets/i18n/' + lang + '.json')
-          .then(function (r) { return r.json(); })
-          .then(function (t) { applyTranslations(t, lang); })
-          .catch(function () { if (lang !== 'en') return loadLang('en'); });
+        // 1. URL param ?lang=xx (highest priority — e.g. app passes user locale)
+        var urlParam = new URLSearchParams(window.location.search).get('lang');
+        if (urlParam && i18n[urlParam]) return urlParam;
+
+        // 2. User's explicit picker choice
+        var saved = localStorage.getItem('streamline-lang');
+        if (saved && i18n[saved]) return saved;
+
+        // 3. OS/browser language — exact match then prefix match
+        var nav = navigator.language || 'en';
+        if (i18n[nav]) return nav;
+        var prefix = nav.split('-')[0];
+        var keys = Object.keys(i18n);
+        for (var i = 0; i < keys.length; i++) {
+          if (keys[i] === 'en') continue; // keep en as last resort
+          if (keys[i].toLowerCase().startsWith(prefix.toLowerCase())) return keys[i];
+        }
+
+        // 4. English fallback
+        return 'en';
       }
 
       // Wire up dropdown
@@ -1139,18 +1155,13 @@
             e.stopPropagation();
             var lang = btn.getAttribute('data-lang');
             localStorage.setItem('streamline-lang', lang);
-            loadLang(lang);
+            applyTranslations(lang);
             dropdown.hidden = true;
           });
         });
       }
 
-      // Hide page until translations load to avoid English flash
-      document.documentElement.style.opacity = '0';
-      loadLang(detectLang()).then(function () {
-        document.documentElement.style.transition = 'opacity 0.12s';
-        document.documentElement.style.opacity    = '1';
-      });
+      applyTranslations(detectLang());
     })();
   </script>
 
