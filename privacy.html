@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Streamline</title>
+  <link rel="icon" type="image/png" href="Assets/AppIcon.png" />
+  <meta name="description" content="Privacy Policy for Streamline — M3U & IPTV Playlist Editor." />
+  <meta name="theme-color" content="#080C14" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-dark:      #080C14;
+      --bg-dark-2:    #0D1120;
+      --bg-card:      #0F1524;
+      --text-primary: #FFFFFF;
+      --text-muted:   rgba(255,255,255,0.5);
+      --text-body:    rgba(255,255,255,0.82);
+      --lime:         #6BBFED;
+      --border:       rgba(255,255,255,0.07);
+      --radius-md:    14px;
+      --font-serif:   'Instrument Serif', Georgia, serif;
+      --font-sans:    'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Nav ──────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(8,12,20,0.6);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .nav-logo img {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+    }
+
+    .nav-back {
+      font-size: 0.875rem;
+      color: var(--lime);
+      text-decoration: none;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    .nav-back:hover { opacity: 1; }
+
+    /* ─── Content ──────────────────────────────────────────────────── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 112px 2rem 80px;
+    }
+
+    .page-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .last-updated {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+    }
+
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 0.9375rem;
+      color: var(--text-body);
+      margin-bottom: 0.75rem;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+
+    ul li {
+      font-size: 0.9375rem;
+      color: var(--text-body);
+      padding: 0.3rem 0 0.3rem 1.25rem;
+      position: relative;
+    }
+
+    ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--lime);
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .card p { margin-bottom: 0; }
+
+    a {
+      color: var(--lime);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+
+    /* ─── Footer ───────────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <img src="Assets/AppIcon.png" alt="Streamline" />
+      Streamline
+    </a>
+    <a class="nav-back" href="index.html">← Back</a>
+  </nav>
+
+  <div class="container">
+
+    <p class="page-label">Legal</p>
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Last updated: April 2, 2026</p>
+
+    <div class="section">
+      <p>Streamline is an M3U and Xtream Codes playlist editor. This policy explains what data the app collects, how it is used, and your rights as a user.</p>
+    </div>
+
+    <div class="section">
+      <h2>Data We Collect</h2>
+      <p>Streamline does not collect or store any personally identifiable information. The app uses the following third-party SDKs that collect limited, anonymous data:</p>
+
+      <div class="card">
+        <p><strong>Firebase Analytics</strong> — Collects anonymous usage data such as feature interactions and session length. This data is aggregated and never linked to your identity. <a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Privacy Policy →</a></p>
+      </div>
+
+      <div class="card">
+        <p><strong>Firebase Crashlytics</strong> — Collects anonymous crash reports including device type, OS version, and app version at the time of a crash. No personal data is included. <a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Privacy Policy →</a></p>
+      </div>
+
+      <div class="card">
+        <p><strong>Firebase Remote Config</strong> — Used to remotely adjust app configuration and deliver alerts (such as force-update notices). No personal data is collected by this service.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Data Stored on Your Device</h2>
+      <p>All playlist data, stream metadata, server configurations, and preferences are stored locally on your device. This data never leaves your device except when you explicitly sync via iCloud (if enabled).</p>
+      <ul>
+        <li>Playlist and stream data is stored in a local SQLite database</li>
+        <li>Server configurations are stored in UserDefaults on your device</li>
+        <li>iCloud sync (if enabled) uses Apple's CloudKit — governed by Apple's privacy policy</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Data We Do Not Collect</h2>
+      <ul>
+        <li>We do not collect your name, email, or any contact information</li>
+        <li>We do not collect your M3U URLs, playlist contents, or stream metadata</li>
+        <li>We do not collect your IP address or location</li>
+        <li>We do not sell or share any data with third parties for advertising</li>
+        <li>We do not use advertising identifiers (IDFA)</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>In-App Purchases</h2>
+      <p>Streamline offers an optional one-time In-App Purchase ("Streamline Pro"). All payment processing is handled entirely by Apple. We do not receive or store any payment information.</p>
+    </div>
+
+    <div class="section">
+      <h2>Network Access</h2>
+      <p>Streamline accesses the internet only for the following purposes:</p>
+      <ul>
+        <li>Fetching M3U or Xtream Codes playlists from URLs you explicitly provide</li>
+        <li>Sending anonymous crash and usage data via Firebase (described above)</li>
+        <li>Fetching Remote Config values from Firebase</li>
+        <li>Checking stream URL health when you initiate a health check</li>
+      </ul>
+      <p>The app never makes network requests in the background without your knowledge.</p>
+    </div>
+
+    <div class="section">
+      <h2>Children's Privacy</h2>
+      <p>Streamline is not directed at children under the age of 13. We do not knowingly collect any data from children.</p>
+    </div>
+
+    <div class="section">
+      <h2>Changes to This Policy</h2>
+      <p>We may update this privacy policy from time to time. Any changes will be reflected on this page with an updated date. Continued use of the app after changes constitutes acceptance of the revised policy.</p>
+    </div>
+
+    <div class="section">
+      <h2>Contact</h2>
+      <p>If you have any questions about this privacy policy, please contact us at <a href="mailto:contact@shallowtv.com">contact@shallowtv.com</a>.</p>
+    </div>
+
+    <hr />
+
+    <p style="font-size:0.875rem; color: var(--text-muted);">© 2026 Streamline. All rights reserved.</p>
+
+  </div>
+
+  <footer>
+    <p>© 2026 Streamline</p>
+  </footer>
+
+</body>
+</html>
