@@ -15,6 +15,15 @@
   <meta name="twitter:title" content="Streamline — IPTV & M3U Playlist Editor" />
   <meta name="twitter:description" content="Native Mac and iPhone app for managing IPTV playlists. Import M3U files, edit streams, run a local server, and export to any format." />
   <meta name="theme-color" content="#080C14" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SDQVPL5MR2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SDQVPL5MR2');
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -983,7 +992,9 @@
       background: #0D1120;
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: var(--radius-sm);
-      min-width: 170px; overflow: hidden;
+      min-width: 170px;
+      max-height: 60vh;
+      overflow-y: auto;
       box-shadow: 0 8px 32px rgba(0,0,0,0.55);
       z-index: 200;
     }
@@ -1027,7 +1038,7 @@
       <li><a href="#terms" data-i18n="nav.terms">Terms</a></li>
       <li><a href="#copyright" data-i18n="nav.copyright">Copyright</a></li>
       <li><a href="privacy.html" data-i18n="nav.privacy">Privacy</a></li>
-      <li><a href="#" class="nav-cta" style="cursor:default;" onclick="return false;" data-i18n="nav.comingSoon">Coming Soon</a></li>
+      <li><a href="https://apps.apple.com/us/app/streamline-iptv-m3u-editor/id6760606054?mt=12" class="nav-cta" target="_blank" rel="noopener" data-i18n="nav.download">Download Now</a></li>
     </ul>
     <div class="lang-switcher">
       <button class="lang-btn" id="lang-toggle" aria-label="Select language">
@@ -1041,8 +1052,10 @@
         <button data-lang="zh-Hans">Chinese (Simplified)</button>
         <button data-lang="zh-Hant">Chinese (Traditional)</button>
         <button data-lang="nl">Dutch</button>
-        <button data-lang="en">en</button>
+        <button data-lang="en">English (US)</button>
+        <button data-lang="en-GB">English (UK)</button>
         <button data-lang="fi">Finnish</button>
+        <button data-lang="fr-CA">French (Canada)</button>
         <button data-lang="fr">French</button>
         <button data-lang="de">German</button>
         <button data-lang="el">Greek</button>
@@ -1052,11 +1065,14 @@
         <button data-lang="it">Italian</button>
         <button data-lang="ja">Japanese</button>
         <button data-lang="ko">Korean</button>
+        <button data-lang="ms">Malay</button>
         <button data-lang="fa">Persian</button>
         <button data-lang="pl">Polish</button>
         <button data-lang="pt-BR">Portuguese (Brazil)</button>
         <button data-lang="ru">Russian</button>
+        <button data-lang="sk">Slovak</button>
         <button data-lang="es">Spanish</button>
+        <button data-lang="sv">Swedish</button>
         <button data-lang="th">Thai</button>
         <button data-lang="tr">Turkish</button>
         <button data-lang="uk">Ukrainian</button>
@@ -1086,9 +1102,9 @@
         Import, manage, and serve M3U playlists with a native Mac and iPhone app built for power users.
       </p>
       <div class="hero-buttons fade-up fade-up-delay-3">
-        <a href="#" class="btn-lime" style="cursor:default;" onclick="return false;">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1.5C4.515 1.5 2.5 3.515 2.5 6c0 .965.29 1.86.787 2.6L2 12l3.52-1.27A4.48 4.48 0 0 0 7 11c2.485 0 4.5-2.015 4.5-4.5S9.485 1.5 7 1.5Z" fill="currentColor"/></svg>
-          <span data-i18n="hero.button">Coming Soon</span>
+        <a href="https://apps.apple.com/us/app/streamline-iptv-m3u-editor/id6760606054?mt=12" class="btn-lime" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.67 11.56c-.44.66-1.07 1.44-1.79 1.44-.73 0-.97-.44-1.83-.44-.86 0-1.12.44-1.83.44-.72 0-1.35-.78-1.79-1.44C2.5 9.78 2.26 6.78 4.17 5.89c.71-.33 1.26-.22 1.79-.22.54 0 1.07.23 1.79.23.73 0 1.08-.23 1.79-.23.53 0 1.08-.11 1.79.22 1.91.89 1.67 3.89.34 5.67zM8.89 5.11c-.5.48-1.36.44-1.36.44s.01-.83.51-1.31c.5-.48 1.36-.44 1.36-.44s-.01.83-.51 1.31z" fill="currentColor"/></svg>
+          <span data-i18n="hero.button">Download Now</span>
         </a>
       </div>
     </div>
@@ -1391,8 +1407,8 @@
   <script src="Assets/i18n/translations.js"></script>
   <script>
     (function () {
-      var SUPPORTED   = ['en', 'zh-Hans', 'de', 'fa', 'ar', 'ko', 'ja', 'pl', 'es', 'it', 'ru', 'fr', 'id', 'th', 'zh-HK', 'pt-BR', 'vi', 'tr', 'he', 'zh-Hant', 'nl', 'uk', 'fi', 'hi', 'el'];
-      var LANG_LABELS = { en: 'EN', 'zh-Hans': '中文', de: 'DE', 'fa': 'Persian', 'ar': 'عربي', 'ko': '한국어', 'ja': '日本語', 'pl': 'PL', 'es': 'ES', 'it': 'IT', 'ru': 'RU', 'fr': 'FR', 'id': 'ID', 'th': 'ไทย', 'zh-HK': '繁體', 'pt-BR': 'PT', 'vi': 'VI', 'tr': 'TR', 'he': 'עב', 'zh-Hant': '繁體', 'nl': 'NL', 'uk': 'УК', 'fi': 'FI', 'hi': 'हि', 'el': 'ΕΛ'};
+      var SUPPORTED   = ['en', 'zh-Hans', 'de', 'fa', 'ar', 'ko', 'ja', 'pl', 'es', 'it', 'ru', 'fr', 'id', 'th', 'zh-HK', 'pt-BR', 'vi', 'tr', 'he', 'zh-Hant', 'nl', 'uk', 'fi', 'hi', 'el', 'ms', 'sk', 'sv', 'fr-CA', 'en-GB'];
+      var LANG_LABELS = { en: 'EN', 'zh-Hans': '中文', de: 'DE', 'fa': 'Persian', 'ar': 'عربي', 'ko': '한국어', 'ja': '日本語', 'pl': 'PL', 'es': 'ES', 'it': 'IT', 'ru': 'RU', 'fr': 'FR', 'id': 'ID', 'th': 'ไทย', 'zh-HK': '繁體', 'pt-BR': 'PT', 'vi': 'VI', 'tr': 'TR', 'he': 'עב', 'zh-Hant': '繁體', 'nl': 'NL', 'uk': 'УК', 'fi': 'FI', 'hi': 'हि', 'el': 'ΕΛ', 'ms': 'MS', 'sk': 'SK', 'sv': 'SV', 'fr-CA': 'FR', 'en-GB': 'EN'};
 
       function applyTranslations(lang) {
         var t = (window.I18N || {})[lang] || (window.I18N || {})['en'] || {};

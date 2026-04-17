@@ -7,6 +7,15 @@
   <link rel="icon" type="image/png" href="Assets/AppIcon.png" />
   <meta name="description" content="Privacy Policy for Streamline — M3U & IPTV Playlist Editor." />
   <meta name="theme-color" content="#080C14" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SDQVPL5MR2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SDQVPL5MR2');
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -21,7 +30,9 @@
       --text-muted:   rgba(255,255,255,0.5);
       --text-body:    rgba(255,255,255,0.82);
       --lime:         #6BBFED;
+      --lime-dark:    #4FA8E0;
       --border:       rgba(255,255,255,0.07);
+      --radius-sm:    8px;
       --radius-md:    14px;
       --font-serif:   'Instrument Serif', Georgia, serif;
       --font-sans:    'Inter', system-ui, sans-serif;
@@ -38,7 +49,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── Nav ──────────────────────────────────────────────────────── */
+    /* ─── Nav (matches index.html) ─────────────────────────────────── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -52,33 +63,109 @@
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       border-bottom: 1px solid var(--border);
+      transition: background 0.3s ease;
+    }
+
+    nav.opaque {
+      background: rgba(8,12,20,0.92);
     }
 
     .nav-logo {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: -0.01em;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 0.4rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .nav-links li { list-style: none; }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.6);
       text-decoration: none;
-      color: var(--text-primary);
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
-    .nav-logo img {
-      width: 28px;
-      height: 28px;
-      border-radius: 7px;
-    }
-
-    .nav-back {
       font-size: 0.875rem;
-      color: var(--lime);
-      text-decoration: none;
-      opacity: 0.85;
-      transition: opacity 0.2s;
+      font-weight: 400;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius-sm);
+      transition: color 0.2s, background 0.2s;
     }
 
-    .nav-back:hover { opacity: 1; }
+    .nav-links a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .nav-links a.active { color: #fff; text-decoration: none; }
+
+    .nav-cta {
+      background: var(--lime);
+      color: #0D1120 !important;
+      font-weight: 600 !important;
+      border-radius: 999px;
+      padding: 0.45rem 1.1rem !important;
+      font-size: 0.82rem !important;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--lime-dark) !important;
+      color: #0D1120 !important;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 840px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links li:not(:last-child) { display: none; }
+    }
+
+    /* ─── Language Switcher ────────────────────────────────────────── */
+    .lang-switcher { position: relative; margin-inline-start: 0.5rem; }
+
+    .lang-btn {
+      display: flex; align-items: center; gap: 0.3rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm);
+      color: rgba(255,255,255,0.7);
+      font-family: var(--font-sans); font-size: 0.8rem; font-weight: 500;
+      padding: 0.28rem 0.6rem; cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+    .lang-dropdown {
+      position: absolute; top: calc(100% + 8px); inset-inline-end: 0;
+      background: #0D1120;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm);
+      min-width: 170px;
+      max-height: 60vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.55);
+      z-index: 200;
+    }
+    .lang-dropdown[hidden] { display: none; }
+    .lang-dropdown button {
+      display: block; width: 100%; background: none; border: none;
+      color: rgba(255,255,255,0.6); font-family: var(--font-sans);
+      font-size: 0.85rem; padding: 0.6rem 1rem;
+      text-align: start; cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-dropdown button:hover { background: rgba(255,255,255,0.06); color: #fff; }
+    .lang-dropdown button.lang-active { color: var(--lime); font-weight: 500; }
 
     /* ─── Content ──────────────────────────────────────────────────── */
     .container {
@@ -129,23 +216,24 @@
 
     p:last-child { margin-bottom: 0; }
 
-    ul {
+    .section ul {
       list-style: none;
       padding: 0;
       margin: 0.5rem 0;
     }
 
-    ul li {
+    .section ul li {
       font-size: 0.9375rem;
       color: var(--text-body);
-      padding: 0.3rem 0 0.3rem 1.25rem;
+      padding: 0.3rem 0 0.3rem 0;
+      padding-inline-start: 1.25rem;
       position: relative;
     }
 
-    ul li::before {
+    .section ul li::before {
       content: '•';
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       color: var(--lime);
     }
 
@@ -184,103 +272,233 @@
 </head>
 <body>
 
-  <nav>
+  <nav id="main-nav">
     <a class="nav-logo" href="index.html">
-      <img src="Assets/AppIcon.png" alt="Streamline" />
+      <img src="Assets/AppIcon.png" alt="Streamline" style="width:28px;height:28px;border-radius:7px;margin-inline-end:8px;vertical-align:middle;" />
       Streamline
     </a>
-    <a class="nav-back" href="index.html">← Back</a>
+    <ul class="nav-links">
+      <li><a href="index.html#home" data-i18n="nav.home">Home</a></li>
+      <li><a href="index.html#screenshots" data-i18n="nav.screenshots">Screenshots</a></li>
+      <li><a href="index.html#pro" data-i18n="nav.pricing">Pricing</a></li>
+      <li><a href="index.html#terms" data-i18n="nav.terms">Terms</a></li>
+      <li><a href="index.html#copyright" data-i18n="nav.copyright">Copyright</a></li>
+      <li><a href="privacy.html" class="active" data-i18n="nav.privacy">Privacy</a></li>
+      <li><a href="https://apps.apple.com/us/app/streamline-iptv-m3u-editor/id6760606054?mt=12" class="nav-cta" target="_blank" rel="noopener" data-i18n="nav.download">Download Now</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn" id="lang-toggle" aria-label="Select language">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="lang-current">EN</span>
+        <svg width="9" height="9" viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M1.5 3l3 3 3-3"/></svg>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown" hidden>
+        <button data-lang="ar">Arabic</button>
+        <button data-lang="zh-HK">Chinese (Hong Kong)</button>
+        <button data-lang="zh-Hans">Chinese (Simplified)</button>
+        <button data-lang="zh-Hant">Chinese (Traditional)</button>
+        <button data-lang="nl">Dutch</button>
+        <button data-lang="en">English (US)</button>
+        <button data-lang="en-GB">English (UK)</button>
+        <button data-lang="fi">Finnish</button>
+        <button data-lang="fr-CA">French (Canada)</button>
+        <button data-lang="fr">French</button>
+        <button data-lang="de">German</button>
+        <button data-lang="el">Greek</button>
+        <button data-lang="he">Hebrew</button>
+        <button data-lang="hi">Hindi</button>
+        <button data-lang="id">Indonesian</button>
+        <button data-lang="it">Italian</button>
+        <button data-lang="ja">Japanese</button>
+        <button data-lang="ko">Korean</button>
+        <button data-lang="ms">Malay</button>
+        <button data-lang="fa">Persian</button>
+        <button data-lang="pl">Polish</button>
+        <button data-lang="pt-BR">Portuguese (Brazil)</button>
+        <button data-lang="ru">Russian</button>
+        <button data-lang="sk">Slovak</button>
+        <button data-lang="es">Spanish</button>
+        <button data-lang="sv">Swedish</button>
+        <button data-lang="th">Thai</button>
+        <button data-lang="tr">Turkish</button>
+        <button data-lang="uk">Ukrainian</button>
+        <button data-lang="vi">Vietnamese</button>
+      </div>
+    </div>
   </nav>
 
   <div class="container">
 
-    <p class="page-label">Legal</p>
-    <h1>Privacy Policy</h1>
-    <p class="last-updated">Last updated: April 2, 2026</p>
+    <p class="page-label" data-i18n="privacy.label">Legal</p>
+    <h1 data-i18n="privacy.title">Privacy Policy</h1>
+    <p class="last-updated" data-i18n="privacy.lastUpdated">Last updated: April 2, 2026</p>
 
     <div class="section">
-      <p>Streamline is an M3U and Xtream Codes playlist editor. This policy explains what data the app collects, how it is used, and your rights as a user.</p>
+      <p data-i18n="privacy.intro">Streamline is an M3U and Xtream Codes playlist editor. This policy explains what data the app collects, how it is used, and your rights as a user.</p>
     </div>
 
     <div class="section">
-      <h2>Data We Collect</h2>
-      <p>Streamline does not collect or store any personally identifiable information. The app uses the following third-party SDKs that collect limited, anonymous data:</p>
+      <h2 data-i18n="privacy.dataCollect.title">Data We Collect</h2>
+      <p data-i18n="privacy.dataCollect.intro">Streamline does not collect or store any personally identifiable information. The app uses the following third-party SDKs that collect limited, anonymous data:</p>
 
       <div class="card">
-        <p><strong>Firebase Analytics</strong> — Collects anonymous usage data such as feature interactions and session length. This data is aggregated and never linked to your identity. <a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Privacy Policy →</a></p>
+        <p data-i18n-html="privacy.firebase.analytics"><strong>Firebase Analytics</strong> — Collects anonymous usage data such as feature interactions and session length. This data is aggregated and never linked to your identity. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase Privacy Policy →</a></p>
       </div>
 
       <div class="card">
-        <p><strong>Firebase Crashlytics</strong> — Collects anonymous crash reports including device type, OS version, and app version at the time of a crash. No personal data is included. <a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Privacy Policy →</a></p>
+        <p data-i18n-html="privacy.firebase.crashlytics"><strong>Firebase Crashlytics</strong> — Collects anonymous crash reports including device type, OS version, and app version at the time of a crash. No personal data is included. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase Privacy Policy →</a></p>
       </div>
 
       <div class="card">
-        <p><strong>Firebase Remote Config</strong> — Used to remotely adjust app configuration and deliver alerts (such as force-update notices). No personal data is collected by this service.</p>
+        <p data-i18n-html="privacy.firebase.remoteConfig"><strong>Firebase Remote Config</strong> — Used to remotely adjust app configuration and deliver alerts (such as force-update notices). No personal data is collected by this service.</p>
       </div>
     </div>
 
     <div class="section">
-      <h2>Data Stored on Your Device</h2>
-      <p>All playlist data, stream metadata, server configurations, and preferences are stored locally on your device. This data never leaves your device except when you explicitly sync via iCloud (if enabled).</p>
+      <h2 data-i18n="privacy.dataStored.title">Data Stored on Your Device</h2>
+      <p data-i18n="privacy.dataStored.intro">All playlist data, stream metadata, server configurations, and preferences are stored locally on your device. This data never leaves your device except when you explicitly sync via iCloud (if enabled).</p>
       <ul>
-        <li>Playlist and stream data is stored in a local SQLite database</li>
-        <li>Server configurations are stored in UserDefaults on your device</li>
-        <li>iCloud sync (if enabled) uses Apple's CloudKit — governed by Apple's privacy policy</li>
+        <li data-i18n="privacy.dataStored.bullet1">Playlist and stream data is stored in a local SQLite database</li>
+        <li data-i18n="privacy.dataStored.bullet2">Server configurations are stored in UserDefaults on your device</li>
+        <li data-i18n="privacy.dataStored.bullet3">iCloud sync (if enabled) uses Apple's CloudKit — governed by Apple's privacy policy</li>
       </ul>
     </div>
 
     <div class="section">
-      <h2>Data We Do Not Collect</h2>
+      <h2 data-i18n="privacy.dataNotCollect.title">Data We Do Not Collect</h2>
       <ul>
-        <li>We do not collect your name, email, or any contact information</li>
-        <li>We do not collect your M3U URLs, playlist contents, or stream metadata</li>
-        <li>We do not collect your IP address or location</li>
-        <li>We do not sell or share any data with third parties for advertising</li>
-        <li>We do not use advertising identifiers (IDFA)</li>
+        <li data-i18n="privacy.dataNotCollect.bullet1">We do not collect your name, email, or any contact information</li>
+        <li data-i18n="privacy.dataNotCollect.bullet2">We do not collect your M3U URLs, playlist contents, or stream metadata</li>
+        <li data-i18n="privacy.dataNotCollect.bullet3">We do not collect your IP address or location</li>
+        <li data-i18n="privacy.dataNotCollect.bullet4">We do not sell or share any data with third parties for advertising</li>
+        <li data-i18n="privacy.dataNotCollect.bullet5">We do not use advertising identifiers (IDFA)</li>
       </ul>
     </div>
 
     <div class="section">
-      <h2>In-App Purchases</h2>
-      <p>Streamline offers an optional one-time In-App Purchase ("Streamline Pro"). All payment processing is handled entirely by Apple. We do not receive or store any payment information.</p>
+      <h2 data-i18n="privacy.iap.title">In-App Purchases</h2>
+      <p data-i18n="privacy.iap.text">Streamline offers an optional one-time In-App Purchase ("Streamline Pro"). All payment processing is handled entirely by Apple. We do not receive or store any payment information.</p>
     </div>
 
     <div class="section">
-      <h2>Network Access</h2>
-      <p>Streamline accesses the internet only for the following purposes:</p>
+      <h2 data-i18n="privacy.network.title">Network Access</h2>
+      <p data-i18n="privacy.network.intro">Streamline accesses the internet only for the following purposes:</p>
       <ul>
-        <li>Fetching M3U or Xtream Codes playlists from URLs you explicitly provide</li>
-        <li>Sending anonymous crash and usage data via Firebase (described above)</li>
-        <li>Fetching Remote Config values from Firebase</li>
-        <li>Checking stream URL health when you initiate a health check</li>
+        <li data-i18n="privacy.network.bullet1">Fetching M3U or Xtream Codes playlists from URLs you explicitly provide</li>
+        <li data-i18n="privacy.network.bullet2">Sending anonymous crash and usage data via Firebase (described above)</li>
+        <li data-i18n="privacy.network.bullet3">Fetching Remote Config values from Firebase</li>
+        <li data-i18n="privacy.network.bullet4">Checking stream URL health when you initiate a health check</li>
       </ul>
-      <p>The app never makes network requests in the background without your knowledge.</p>
+      <p data-i18n="privacy.network.outro">The app never makes network requests in the background without your knowledge.</p>
     </div>
 
     <div class="section">
-      <h2>Children's Privacy</h2>
-      <p>Streamline is not directed at children under the age of 13. We do not knowingly collect any data from children.</p>
+      <h2 data-i18n="privacy.children.title">Children's Privacy</h2>
+      <p data-i18n="privacy.children.text">Streamline is not directed at children under the age of 13. We do not knowingly collect any data from children.</p>
     </div>
 
     <div class="section">
-      <h2>Changes to This Policy</h2>
-      <p>We may update this privacy policy from time to time. Any changes will be reflected on this page with an updated date. Continued use of the app after changes constitutes acceptance of the revised policy.</p>
+      <h2 data-i18n="privacy.changes.title">Changes to This Policy</h2>
+      <p data-i18n="privacy.changes.text">We may update this privacy policy from time to time. Any changes will be reflected on this page with an updated date. Continued use of the app after changes constitutes acceptance of the revised policy.</p>
     </div>
 
     <div class="section">
-      <h2>Contact</h2>
-      <p>If you have any questions about this privacy policy, please contact us at <a href="mailto:contact@shallowtv.com">contact@shallowtv.com</a>.</p>
+      <h2 data-i18n="privacy.contact.title">Contact</h2>
+      <p data-i18n-html="privacy.contact.text">If you have any questions about this privacy policy, please contact us at <a href="mailto:contact@shallowtv.com">contact@shallowtv.com</a>.</p>
     </div>
 
     <hr />
 
-    <p style="font-size:0.875rem; color: var(--text-muted);">© 2026 Streamline. All rights reserved.</p>
+    <p style="font-size:0.875rem; color: var(--text-muted);" data-i18n="privacy.copyright">© 2026 Streamline. All rights reserved.</p>
 
   </div>
 
   <footer>
-    <p>© 2026 Streamline</p>
+    <p data-i18n="footer.copy">© 2026 Streamline</p>
   </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       I18N — shared translation bundle (same as index.html)
+  ══════════════════════════════════════════════════════════════════ -->
+  <script src="Assets/i18n/translations.js"></script>
+  <script>
+    (function () {
+      var LANG_LABELS = { en: 'EN', 'zh-Hans': '中文', de: 'DE', 'fa': 'Persian', 'ar': 'عربي', 'ko': '한국어', 'ja': '日本語', 'pl': 'PL', 'es': 'ES', 'it': 'IT', 'ru': 'RU', 'fr': 'FR', 'id': 'ID', 'th': 'ไทย', 'zh-HK': '繁體', 'pt-BR': 'PT', 'vi': 'VI', 'tr': 'TR', 'he': 'עב', 'zh-Hant': '繁體', 'nl': 'NL', 'uk': 'УК', 'fi': 'FI', 'hi': 'हि', 'el': 'ΕΛ'};
+
+      function applyTranslations(lang) {
+        var t = (window.I18N || {})[lang] || (window.I18N || {})['en'] || {};
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          if (t[key] !== undefined) el.textContent = t[key];
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-html');
+          if (t[key] !== undefined) el.innerHTML = t[key];
+        });
+        var label = document.getElementById('lang-current');
+        if (label) label.textContent = LANG_LABELS[lang] || lang.toUpperCase();
+        document.querySelectorAll('[data-lang]').forEach(function (btn) {
+          btn.classList.toggle('lang-active', btn.getAttribute('data-lang') === lang);
+        });
+        document.documentElement.lang = lang;
+        document.documentElement.dir = ['ar', 'fa', 'he', 'ur'].indexOf(lang) !== -1 ? 'rtl' : 'ltr';
+      }
+
+      function detectLang() {
+        var i18n = window.I18N || {};
+
+        var urlParam = new URLSearchParams(window.location.search).get('lang');
+        if (urlParam && i18n[urlParam]) return urlParam;
+
+        var saved = localStorage.getItem('streamline-lang');
+        if (saved && i18n[saved]) return saved;
+
+        var nav = navigator.language || 'en';
+        if (i18n[nav]) return nav;
+        var prefix = nav.split('-')[0];
+        var keys = Object.keys(i18n);
+        for (var i = 0; i < keys.length; i++) {
+          if (keys[i] === 'en') continue;
+          if (keys[i].toLowerCase().startsWith(prefix.toLowerCase())) return keys[i];
+        }
+
+        return 'en';
+      }
+
+      var toggle   = document.getElementById('lang-toggle');
+      var dropdown = document.getElementById('lang-dropdown');
+      if (toggle && dropdown) {
+        toggle.addEventListener('click', function (e) {
+          e.stopPropagation();
+          dropdown.hidden = !dropdown.hidden;
+        });
+        document.addEventListener('click', function () { dropdown.hidden = true; });
+        document.querySelectorAll('[data-lang]').forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var lang = btn.getAttribute('data-lang');
+            localStorage.setItem('streamline-lang', lang);
+            applyTranslations(lang);
+            dropdown.hidden = true;
+          });
+        });
+      }
+
+      applyTranslations(detectLang());
+    })();
+
+    // ── Nav opacity on scroll ──────────────────────────────────────
+    (function () {
+      var nav = document.getElementById('main-nav');
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 40) {
+          nav.classList.add('opaque');
+        } else {
+          nav.classList.remove('opaque');
+        }
+      }, { passive: true });
+    })();
+  </script>
 
 </body>
 </html>
