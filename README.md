@@ -1,6 +1,8 @@
-# Streamline - IPTV & M3U Editor
+# Streamline — IPTV & M3U Editor
 
-🌐 **[View Landing Page](https://hcycy09.github.io/StreamlineLandingScreen/)**
+> **Note:** This repo previously hosted Streamline's landing page. The site has moved to [**shallowapps.com/streamline**](https://shallowapps.com/streamline). The pages here now redirect to the new URL — kept only so old links (App Store, social, bookmarks) keep working.
+
+🌐 **[Visit the landing page](https://shallowapps.com/streamline)**
 
 🛒 **[Download on the App Store](https://apps.apple.com/us/app/streamline-iptv-m3u-editor/id6760606054?mt=12)**
 
